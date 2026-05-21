@@ -66,12 +66,22 @@ fun HomeScreen(
                             Icon(Icons.Filled.ShoppingCart, contentDescription = "Carrito", modifier = Modifier.testTag("cart_button"))
                         }
                         if (totalCartItems > 0) {
-                            Badge(
-                                modifier = Modifier.align(Alignment.TopEnd),
-                                containerColor = MaterialTheme.colorScheme.primary,
+                            Surface(
+                                modifier = Modifier
+                                    .align(Alignment.TopEnd)
+                                    .padding(4.dp)
+                                    .size(18.dp),
+                                shape = RoundedCornerShape(50),
+                                color = MaterialTheme.colorScheme.primary,
                                 contentColor = MaterialTheme.colorScheme.onPrimary
                             ) {
-                                Text(totalCartItems.toString())
+                                Box(contentAlignment = Alignment.Center) {
+                                    Text(
+                                        text = totalCartItems.toString(),
+                                        style = MaterialTheme.typography.labelSmall,
+                                        fontSize = androidx.compose.ui.unit.TextUnit(10f, androidx.compose.ui.unit.TextUnitType.Sp)
+                                    )
+                                }
                             }
                         }
                     }
@@ -170,8 +180,12 @@ fun FeaturedProductCard(product: Product, onAddToCart: (Product) -> Unit) {
                 model = product.imageUrl,
                 contentDescription = product.name,
                 contentScale = ContentScale.Crop,
-                modifier = Modifier.fillMaxSize(),
-                alpha = 0.6f
+                modifier = Modifier.fillMaxSize()
+            )
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(Color.Black.copy(alpha = 0.4f))
             )
             // Gradient or darkening overlay could go here if needed
             Column(
